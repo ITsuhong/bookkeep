@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class CusBottomBar extends StatefulWidget {
+  final Function(int) onTabChanged;
+  final int currentIndex;
+
+  CusBottomBar({required this.onTabChanged, required this.currentIndex});
+
   @override
   State<StatefulWidget> createState() {
     return _CusBottomBarState();
@@ -17,7 +22,6 @@ class _CusBottomBarState extends State<CusBottomBar> {
     "assets/bottom/add.png",
     "assets/bottom/mine.png",
   ];
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,7 @@ class _CusBottomBarState extends State<CusBottomBar> {
             child: Transform(
               alignment: Alignment.center,
               transform: Matrix4.identity()
-                ..scale(_currentIndex == Index ? 1.3 : 1.0),
+                ..scale(widget.currentIndex == Index ? 1.3 : 1.0),
               child: Image.asset(path, height: 45),
             ),
           ),
@@ -41,7 +45,7 @@ class _CusBottomBarState extends State<CusBottomBar> {
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 100),
                   height: 3,
-                  width: _currentIndex == Index ? 35 : 0,
+                  width: widget.currentIndex == Index ? 35 : 0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     gradient: LinearGradient(
@@ -80,9 +84,7 @@ class _CusBottomBarState extends State<CusBottomBar> {
               4,
               (index) => GestureDetector(
                     onTap: () {
-                      setState(() {
-                        _currentIndex = index;
-                      });
+                      widget.onTabChanged(index);
                     },
                     child: buildBottomItem(data[index], index),
                   )),
