@@ -1,9 +1,11 @@
 import 'package:bookkeep/page/base_page.dart';
+import 'package:bookkeep/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));
 }
@@ -25,11 +27,13 @@ class MyApp extends StatelessWidget {
     ));
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return GetMaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.transparent,
-          useMaterial3: true,
-        ),
-        home: BasePage());
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.transparent,
+        useMaterial3: true,
+      ),
+      getPages: Routes.routes,
+      initialRoute: '/',
+    );
   }
 }

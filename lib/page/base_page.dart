@@ -28,40 +28,41 @@ class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        extendBodyBehindAppBar: true,
-        body: SafeArea(
-          top: false,
-          bottom: false,
-          maintainBottomViewPadding: true,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                  child: Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      HexColor('#FDF1CB'),
-                      HexColor('#96F8E3'), // Add more colors if needed
-                    ],
-                  ),
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      body: SafeArea(
+        top: false,
+        bottom: false,
+        maintainBottomViewPadding: true,
+        child: Stack(
+          children: [
+            Positioned.fill(
+                child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    HexColor('#FDF1CB'),
+                    HexColor('#96F8E3'), // Add more colors if needed
+                  ],
                 ),
-              )),
-              Positioned.fill(
-                  child: IndexedStack(
-                index: _currentIndex,
-                children: _pages,
-              )),
-              Positioned(
-                  bottom: 15,
-                  child: CusBottomBar(
-                      currentIndex: _currentIndex, onTabChanged: onTabChanged)),
-            ],
-          ),
-        ));
+              ),
+            )),
+            Positioned.fill(
+                child: IndexedStack(
+              index: _currentIndex,
+              children: _pages,
+            )),
+            Positioned(
+                bottom: 60,
+                child: CusBottomBar(
+                    currentIndex: _currentIndex, onTabChanged: onTabChanged)),
+          ],
+        ),
+      ),
+    );
   }
 }
